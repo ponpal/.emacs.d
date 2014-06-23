@@ -3,6 +3,11 @@
 ;;; Code:
 
 
+;;;### (autoloads nil nil ("dash-pkg.el" "dash.el") (21415 24687
+;;;;;;  937242 729000))
+
+;;;***
+
 (provide 'dash-autoloads)
 ;; Local Variables:
 ;; version-control: never

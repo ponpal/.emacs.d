@@ -3,8 +3,8 @@
 ;; Copyright (C) 2012 Magnar Sveen
 
 ;; Author: Magnar Sveen <magnars@gmail.com>
-;; Version: 20140607.33
-;; X-Original-Version: 2.7.0
+;; Version: 20140618.2212
+;; X-Original-Version: 2.8.0
 ;; Keywords: lists
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -399,6 +399,14 @@ Alias: `-find'"
 (defun -last-item (list)
   "Return the last item of LIST, or nil on an empty list."
   (car (last list)))
+
+(defun -butlast (list)
+  "Return a list of all items in list except for the last."
+  (let (result)
+    (while (cdr list)
+      (!cons (car list) result)
+      (!cdr list))
+    (nreverse result)))
 
 (defmacro --count (pred list)
   "Anaphoric form of `-count'."
@@ -1562,6 +1570,7 @@ structure such as plist or alist."
                              "--last"
                              "-first-item"
                              "-last-item"
+                             "-butlast"
                              "-count"
                              "--count"
                              "-any?"

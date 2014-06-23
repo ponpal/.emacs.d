@@ -3,6 +3,11 @@
 ;;; Code:
 
 
+;;;### (autoloads nil nil ("s-pkg.el" "s.el") (21415 24686 821866
+;;;;;;  547000))
+
+;;;***
+
 (provide 's-autoloads)
 ;; Local Variables:
 ;; version-control: never

@@ -5,7 +5,7 @@
 ;; Author: Sebastian Wiesner <swiesner@lunaryorn.com>
 ;; Maintainer: Johan Andersson <johan.rejeep@gmail.com>
 ;;     Sebastian Wiesner <swiesner@lunaryorn.com>
-;; Version: 20140610.631
+;; Version: 20140620.218
 ;; X-Original-Version: 0.7-cvs
 ;; Package-Requires: ((cl-lib "0.3"))
 ;; Keywords: convenience
@@ -266,7 +266,7 @@ PACKAGE, or nil, if PACKAGE is not installed."
    ((fboundp 'package-desc-dir)
     (package-desc-dir (epl-package-description package)))
    ((fboundp 'package--dir)
-    (package--dir (epl-package-name package)
+    (package--dir (symbol-name (epl-package-name package))
                   (epl-package-version-string package)))
    (:else (error "Cannot get package directory from %S" package))))
 

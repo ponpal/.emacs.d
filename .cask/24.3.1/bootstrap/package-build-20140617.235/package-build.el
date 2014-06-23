@@ -6,7 +6,7 @@
 
 ;; Author: Donald Ephraim Curtis <dcurtis@milkbox.net>
 ;; Created: 2011-09-30
-;; Version: 20140610.1100
+;; Version: 20140617.235
 ;; X-Original-Version: 0.1
 ;; Keywords: tools
 ;; Package-Requires: ((cl-lib "0.2"))
@@ -435,7 +435,7 @@ Return a cons cell whose `car' is the root and whose `cdr' is the repository."
           (let* ((bound (goto-char (point-max)))
                  (tag-version (and (pb/run-process dir "git" "tag")
                                    (or (pb/find-tag-version-newest
-                                        "^v?\\([^ \t\n]+\\)$" bound)
+                                        "^\\(?:v[.-]?\\)?\\([0-9]+[^ \t\n]*\\)$" bound)
                                        (error
                                         "No valid stable versions found for %s"
                                         name)))))
