@@ -12,7 +12,9 @@
 ;; Miscellaneous
 
 (setq inhibit-splash-screen t)
+(setq pcomplete-ignore-case t)
 (put 'dired-find-alternate-file 'disabled nil)
+(fset 'yes-or-no-p 'y-or-n-p)
 
 ;; F11 = Full Screen
 (defun toggle-fullscreen (&optional f)
@@ -34,3 +36,6 @@
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 (load-theme 'fogus)
+
+(require 'direx)
+(global-set-key (kbd "C-x C-j") 'direx:jump-to-directory)
