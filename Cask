@@ -11,4 +11,3 @@
 (depends-on "auto-complete")
 (depends-on "direx")
 (depends-on "sublime-themes")
-
