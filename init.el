@@ -7,6 +7,7 @@
 
 (add-hook 'clojure-mode-hook 'paredit-mode) 
 (add-hook 'clojure-mode-hook 'linum-mode)
+(add-hook 'clojure-mode-hook 'show-paren-mode)
 (add-hook 'emacs-lisp-mode-hook 'auto-complete-mode)
 
 ;; Miscellaneous
@@ -28,7 +29,11 @@
 (global-set-key [f11] 'toggle-fullscreen)
 
 (custom-set-variables
- '(custom-safe-themes (quote ("90b5269aefee2c5f4029a6a039fb53803725af6f5c96036dee5dc029ff4dff60" default))))
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes (quote ("bf648fd77561aae6722f3d53965a9eb29b08658ed045207fe32ffed90433eb52" "90b5269aefee2c5f4029a6a039fb53803725af6f5c96036dee5dc029ff4dff60" default))))
 
 ;; GUI
 
@@ -39,3 +44,9 @@
 
 (require 'direx)
 (global-set-key (kbd "C-x C-j") 'direx:jump-to-directory)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
