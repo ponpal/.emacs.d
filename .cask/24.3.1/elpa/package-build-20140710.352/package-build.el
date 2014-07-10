@@ -6,7 +6,7 @@
 
 ;; Author: Donald Ephraim Curtis <dcurtis@milkbox.net>
 ;; Created: 2011-09-30
-;; Version: 20140617.235
+;; Version: 20140710.352
 ;; X-Original-Version: 0.1
 ;; Keywords: tools
 ;; Package-Requires: ((cl-lib "0.2"))
@@ -85,6 +85,14 @@
       prog))
   "Path to a GNU coreutils \"timeout\" command if available.
 This must be a version which supports the \"-k\" option."
+  :group 'package-build
+  :type '(file :must-match t))
+
+(defcustom package-build-tar-executable
+  (or (executable-find "gtar")
+      (executable-find "tar"))
+  "Path to a (preferably GNU) tar command.
+Certain package names (e.g. \"@\") may not work properly with a BSD tar."
   :group 'package-build
   :type '(file :must-match t))
 
@@ -315,6 +323,33 @@ seconds; the server cuts off after 10 requests in 20 seconds.")
                (pb/expand-source-file-list dir config))
         (pb/find-parse-time
          "\\([a-zA-Z]\\{3\\} [a-zA-Z]\\{3\\} \\( \\|[0-9]\\)[0-9] [0-9]\\{2\\}:[0-9]\\{2\\}:[0-9]\\{2\\} [A-Za-z]\\{3\\} [0-9]\\{4\\}\\)")))))
+
+(defun pb/fossil-repo (dir)
+  "Get the current fossil repo for DIR."
+  (pb/run-process-match "\\(.*\\)" dir "fossil" "remote-url"))
+
+(defun pb/checkout-fossil (name config dir)
+  "Check package NAME with config CONFIG out of fossil into DIR."
+  (unless package-build-stable
+    (let ((repo (plist-get config :url)))
+      (with-current-buffer (get-buffer-create "*package-build-checkout*")
+        (cond
+         ((and (or (file-exists-p (expand-file-name ".fslckout" dir))
+                   (file-exists-p (expand-file-name "_FOSSIL_" dir)))
+               (string-equal (pb/fossil-repo dir) repo))
+          (pb/princ-exists dir)
+          (pb/run-process dir "fossil" "update"))
+         (t
+          (when (file-exists-p dir)
+            (delete-directory dir t))
+          (pb/princ-checkout repo dir)
+          (make-directory dir)
+          (pb/run-process dir "fossil" "clone" repo "repo.fossil")
+          (pb/run-process dir "fossil" "open" "repo.fossil")))
+        (pb/run-process dir "fossil" "timeline" "-n" "1" "-t" "ci")
+        (or (pb/find-parse-time
+             "=== \\([0-9]\\{4\\}-[0-9]\\{2\\}-[0-9]\\{2\\} ===\n[0-9]\\{2\\}:[0-9]\\{2\\}:[0-9]\\{2\\}\\) ")
+            (error "No valid timestamps found!"))))))
 
 (defun pb/svn-repo (dir)
   "Get the current svn repo for DIR."
@@ -556,7 +591,7 @@ Optionally PRETTY-PRINT the data."
 (defun pb/create-tar (file dir &optional files)
   "Create a tar FILE containing the contents of DIR, or just FILES if non-nil."
   (apply 'process-file
-         "tar" nil
+         package-build-tar-executable nil
          (get-buffer-create "*package-build-checkout*")
          nil "-cvf"
          file
@@ -564,6 +599,8 @@ Optionally PRETTY-PRINT the data."
          "--exclude=CVS"
          "--exclude=.git*"
          "--exclude=_darcs"
+         "--exclude=.fslckout"
+         "--exclude=_FOSSIL_"
          "--exclude=.bzr"
          "--exclude=.hg"
          (or (mapcar (lambda (fn) (concat dir "/" fn)) files) (list dir))))

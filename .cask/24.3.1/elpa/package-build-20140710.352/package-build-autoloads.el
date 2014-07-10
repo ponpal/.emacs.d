@@ -5,7 +5,7 @@
 
 ;;;### (autoloads (package-build-all package-build-current-recipe
 ;;;;;;  package-build-create-recipe package-build-package package-build-archive)
-;;;;;;  "package-build" "package-build.el" (21420 42816 69044 251000))
+;;;;;;  "package-build" "package-build.el" (21438 60515 208877 37000))
 ;;; Generated autoloads from package-build.el
 
 (autoload 'package-build-archive "package-build" "\
@@ -49,8 +49,8 @@ Build all packages in the `package-build-recipe-alist'.
 
 ;;;***
 
-;;;### (autoloads nil nil ("package-build-pkg.el") (21420 42816 87018
-;;;;;;  826000))
+;;;### (autoloads nil nil ("package-build-pkg.el") (21438 60515 229323
+;;;;;;  107000))
 
 ;;;***
 
