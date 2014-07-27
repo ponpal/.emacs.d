@@ -13,9 +13,19 @@
 ;; Miscellaneous
 
 (setq inhibit-splash-screen t)
+(setq initial-scratch-message "")
+(blink-cursor-mode 0)
 (setq pcomplete-ignore-case t)
 (put 'dired-find-alternate-file 'disabled nil)
 (fset 'yes-or-no-p 'y-or-n-p)
+
+(defun lambda-as-lambda (mode pattern)
+  (font-lock-add-keywords
+   mode `((,pattern
+           (0 (progn (compose-region (match-beginning 1) (match-end 1)
+                                     "λ" 'decompose-region)))))))
+
+(lambda-as-lambda 'clojure-mode "(\\(\\<fn\\>\\)")
 
 ;; F11 = Full Screen
 (defun toggle-fullscreen (&optional f)
@@ -28,25 +38,25 @@
           'fullboth)))))
 (global-set-key [f11] 'toggle-fullscreen)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("bf648fd77561aae6722f3d53965a9eb29b08658ed045207fe32ffed90433eb52" "90b5269aefee2c5f4029a6a039fb53803725af6f5c96036dee5dc029ff4dff60" default))))
-
 ;; GUI
 
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
-(load-theme 'fogus)
 
-(require 'direx)
-(global-set-key (kbd "C-x C-j") 'direx:jump-to-directory)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes (quote ("90b5269aefee2c5f4029a6a039fb53803725af6f5c96036dee5dc029ff4dff60" default))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+
+(load-theme 'fogus)
+
