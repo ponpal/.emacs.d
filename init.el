@@ -6,9 +6,16 @@
 ;; Hooks
 
 (add-hook 'clojure-mode-hook 'paredit-mode) 
+(add-hook 'cider-repl-mode-hook 'paredit-mode)
+
 (add-hook 'clojure-mode-hook 'linum-mode)
 (add-hook 'clojure-mode-hook 'show-paren-mode)
 (add-hook 'emacs-lisp-mode-hook 'auto-complete-mode)
+
+;; Cider configuration
+
+(setq nrepl-hide-special-buffers t)
+(add-hook 'cider-repl-mode-hook 'visual-line-mode)
 
 ;; Miscellaneous
 
@@ -36,6 +43,7 @@
         (if (boundp 'old-fullscreen) old-fullscreen nil)
         (progn (setq old-fullscreen current-value)
           'fullboth)))))
+
 (global-set-key [f11] 'toggle-fullscreen)
 
 ;; GUI
@@ -56,7 +64,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
 
 (load-theme 'fogus)
 
