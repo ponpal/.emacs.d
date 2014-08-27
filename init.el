@@ -8,7 +8,6 @@
 (add-hook 'clojure-mode-hook 'paredit-mode) 
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
 
-(add-hook 'clojure-mode-hook 'linum-mode)
 (add-hook 'clojure-mode-hook 'show-paren-mode)
 (add-hook 'emacs-lisp-mode-hook 'auto-complete-mode)
 
