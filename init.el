@@ -16,6 +16,13 @@
 (setq nrepl-hide-special-buffers t)
 (add-hook 'cider-repl-mode-hook 'visual-line-mode)
 
+;; Org-mode bindings
+
+(global-set-key "\C-cl" ’org-store-link)
+(global-set-key "\C-cc" ’org-capture)
+(global-set-key "\C-ca" ’org-agenda)
+(global-set-key "\C-cb" ’org-iswitchb)
+
 ;; Miscellaneous
 
 (setq inhibit-splash-screen t)
