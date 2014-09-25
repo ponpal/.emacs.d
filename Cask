@@ -9,7 +9,5 @@
 
 (depends-on "cask")
 (depends-on "auto-complete")
-(depends-on "direx")
 (depends-on "sublime-themes")
-(depends-on "clues-theme")
 (depends-on "4clojure")
