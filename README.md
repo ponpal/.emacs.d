@@ -11,7 +11,7 @@ After emacs is installed, clone this repository into your home folder:
 
 I use [cask][cask] for managing packages. To install it, follow [these instructions][cask-installation].
 
-To install the packages listed in the Cask file, all you have to do is issue the following command inside .emacs.d:
+To install the packages listed in my Cask file, all you have to do is issue the following command inside .emacs.d:
 
 ```cask install```
 
