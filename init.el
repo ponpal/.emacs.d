@@ -7,21 +7,22 @@
 
 (add-hook 'clojure-mode-hook 'paredit-mode) 
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
+(add-hook 'cider-repl-mode-hook 'visual-line-mode)
 
 (add-hook 'clojure-mode-hook 'show-paren-mode)
 (add-hook 'emacs-lisp-mode-hook 'auto-complete-mode)
 
-;; Cider configuration
+;; Cider config
 
 (setq nrepl-hide-special-buffers t)
-(add-hook 'cider-repl-mode-hook 'visual-line-mode)
 
-;; Org-mode bindings
+;; Org-mode config
 
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
+(setq org-support-shift-select t)
 
 ;; Miscellaneous
 
