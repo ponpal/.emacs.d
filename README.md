@@ -17,4 +17,4 @@ To install the packages listed in the Cask file, all you have to do is issue the
 
 ### Precautions
 
-If you've already started to customize emacs on your own, cloning my repository into your home folder might not be the best idea. In that case, I suggest you take a look at the cask project and my init.el file. Feel free to take anything you like.
+If you've already started to customize emacs on your own, cloning my repository into your home folder might not be a good idea. In that case, I suggest you take a look at the cask project and my init.el file. Feel free to take anything you like.
