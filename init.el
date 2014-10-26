@@ -41,20 +41,6 @@
 
 (lambda-as-lambda 'clojure-mode "(\\(\\<fn\\>\\)")
 
-
-
-;; F11 = Full Screen
-
-(defun toggle-fullscreen ()
-  "Toggle full screen on X11"
-  (interactive)
-  (when (eq window-system 'x)
-    (set-frame-parameter
-     nil 'fullscreen
-     (when (not (frame-parameter nil 'fullscreen)) 'fullboth))))
-
-(global-set-key [f11] 'toggle-fullscreen)
-
 ;; GUI
 
 (menu-bar-mode 0)
@@ -66,7 +52,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("90b5269aefee2c5f4029a6a039fb53803725af6f5c96036dee5dc029ff4dff60" default))))
+ '(custom-safe-themes
+   (quote
+    ("3d5ef3d7ed58c9ad321f05360ad8a6b24585b9c49abcee67bdcbb0fe583a6950" default))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -75,4 +63,3 @@
  )
 
 (load-theme 'fogus)
-
