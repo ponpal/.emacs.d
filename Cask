@@ -4,6 +4,7 @@
 (depends-on "cider")
 (depends-on "clojure-mode")
 (depends-on "paredit")
+(depends-on "erlang")
 
 (source melpa)
 
