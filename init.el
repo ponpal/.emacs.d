@@ -12,6 +12,11 @@
 (add-hook 'clojure-mode-hook 'show-paren-mode)
 (add-hook 'emacs-lisp-mode-hook 'auto-complete-mode)
 
+(add-hook 'java-mode-hook (lambda ()
+                                (setq c-basic-offset 4
+                                      tab-width 4
+                                      indent-tabs-mode t)))
+
 ;; Cider config
 
 (setq nrepl-hide-special-buffers t)
@@ -54,7 +59,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("3d5ef3d7ed58c9ad321f05360ad8a6b24585b9c49abcee67bdcbb0fe583a6950" default))))
+    ("3cd28471e80be3bd2657ca3f03fbb2884ab669662271794360866ab60b6cb6e6" default))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -62,4 +67,4 @@
  ;; If there is more than one, they won't work right.
  )
 
-(load-theme 'fogus)
+(load-theme 'mccarthy)
